@@ -5,14 +5,17 @@ import { BrowserRouter } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import DinerProvider from './providers/DinerProvider';
 import MenuProvider from './providers/MenuProvider';
+import ItemProvider from './providers/ItemProvider';
 
 ReactDOM.render(
   <React.StrictMode>
     <DinerProvider>
       <MenuProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <ItemProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ItemProvider>
       </MenuProvider>
     </DinerProvider>
   </React.StrictMode>,

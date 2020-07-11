@@ -7,6 +7,7 @@ export const DinerConsumer = DinerContext.Consumer;
 
 class DinerProvider extends Component {
   state = { diners: [] }
+
   componentDidMount() {
     axios.get('/api/diners')
       .then( res => {
@@ -29,7 +30,7 @@ class DinerProvider extends Component {
       })
   }
 
-  updateDiner = (id, diner) => {
+  updateDiner = (id, diner, history) => {
     axios.put(`/api/diners/${id}`, { diner })
       .then( res => {
         const diners = this.state.diners.map( d => {
@@ -39,20 +40,25 @@ class DinerProvider extends Component {
           return d
         })
         this.setState({ diners })
+        history.push('/diners')
       })
       .catch( err => {
         console.log(err)
       })
   }
 
-  deleteDiner = (id) => {
+  deleteDiner = (id, history) => {
     axios.delete(`/api/diners/${id}`)
       .then( res => {
         const { diners } = this.state
         this.setState({ diners: diners.filter( d => d.id !== id )})
+        history.push('/diners')
+      })
+      .catch( err => {
+        console.log(err)
       })
   }
-  
+
   render() {
     return(
       <DinerContext.Provider value={{
@@ -66,4 +72,5 @@ class DinerProvider extends Component {
     )
   }
 }
+
 export default DinerProvider;
