@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import { MenuConsumer } from '../../providers/MenuProvider';
 import MenuForm from './MenuForm';
+import Items from '../items/Items';
 
 class MenuShow extends Component {
   state = { editing: false }
@@ -28,6 +29,9 @@ class MenuShow extends Component {
               Edit
             </Button>
         }
+        <br />
+        <br />
+        <Items menuId={id} />
       </>
     )
   }
